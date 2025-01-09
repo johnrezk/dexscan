@@ -1,45 +1,62 @@
-[project]
+[tool.poetry]
 name = "dexscan"
 version = "0.1.0"
-description = "Add your description here"
+description = ""
+authors = ["John Rezk <johnrezk@users.noreply.github.com>"]
 readme = "README.md"
-license = {text = "MIT"}
-requires-python = "==3.11.*"
-dependencies = [
-    "alive-progress==3.*",
-    "attrs==23.1.0",
-    "cattrs==23.1.2",
-    "ciso8601==2.3.0",
-    "cryo-python>=0.3.0",
-    "discord==2.3.*",
-    "edgedb==1.5.0",
-    "joblib==1.3.2",
-    "keras==2.13.1",
-    "lightgbm==4.0.0",
-    "orjson==3.9.1",
-    "pandas>=2.2.3",
-    "polars>=1.18.0",
-    "pyarrow>=18.1.0",
-    "python-dotenv>=1.0.1",
-    "requests==2.31.0",
-    "rich==13.4.2",
-    "scikit-learn==1.3.0",
-    "scipy==1.11.2",
-    "tensorflow==2.13.0",
-    "torch==2.1.1",
-    "tzdata==2023.3",
-    "uniswap-universal-router-decoder==0.9.0",
-    "web3==6.5.0",
-    "websockets==11.0.3",
-    "yarl==1.9.2",
-]
 
-[dependency-groups]
-dev = [
-    "mypy>=1.10.1",
-    "ruff>=0.8.5",
-    "types-requests>=2.32.0.20241016",
-]
+[tool.poetry.dependencies]
+python = "~3.11"
+attrs = "^23.1.0"
+cattrs = "^23.1.2"
+orjson = "^3.9.1"
+yarl = "^1.9.2"
+tzdata = "^2023.3"
+web3 = "^6.5.0"
+edgedb = "^1.5.0"
+rich = "^13.4.2"
+uniswap-universal-router-decoder = "^0.9.0"
+requests = "^2.31.0"
+ciso8601 = "^2.3.0"
+tensorflow = "^2.13.0"
+keras = "^2.13.1"
+websockets = "^11.0.3"
+cryo-python = "^0.1.2"
+polars = "^0.18.12"
+pyarrow = "^12.0.1"
+pandas = "^2.0.3"
+scipy = "^1.11.2"
+joblib = "^1.3.2"
+scikit-learn = "^1.3.0"
+lightgbm = "^4.0.0"
+python-dotenv = "^1.0.0"
+discord = "^2.3.2"
+alive-progress = "^3.1.5"
+torch = "^2.1.1"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.3.0"
+types-requests = "^2.31.0.2"
+ruff = "^0.1.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+fmt = "scripts:fmt"
+codegen = "scripts:codegen"
+ui = "dexscan.app:main"
+test = "scripts:test"
+collect-samples = "dexscan.sampling:collect_samples"
+train = "dexscan.training:train"
+train-lgbm = "dexscan.training:train_lgbm"
+train-save-epoch = "dexscan.training:save_epoch"
+reset-pair = "scripts:reset_pair"
+discord-bot = "dexscan.discord:start_client"
+backtest = "dexscan.backtest:run_backtest"
+backtest-analyze = "dexscan.backtest:analyze_results"
 
 [tool.ruff]
 extend-exclude = ["dexscan/edge_codegen.py"]

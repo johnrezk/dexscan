@@ -28,7 +28,6 @@ SAMPLES_DIR = PROJECT_DIR / "samples"
 SAMPLES_CSV = PROJECT_DIR / "samples_train.csv"
 
 
-
 @define
 class InputData:
     pair_addr: str
